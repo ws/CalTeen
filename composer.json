@@ -1,5 +1,6 @@
 {
     "name": "ws/calteen",
+    "version": "1.1.0",
     "description": "My super quick app base. Based on Slim-Skeleton.",
     "homepage": "https://github.com/ws/CalTeen",
     "license": "MIT",
