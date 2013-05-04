@@ -1,6 +1,17 @@
 <?php
 require '../vendor/autoload.php';
 
+$config_file = file_get_contents('../config.json');
+$config = json_decode($config_file);
+
+// Bootstrap Eloquent ORM
+$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory();
+$conn = $connFactory->make((array)$config->{'db'});
+$resolver = new \Illuminate\Database\ConnectionResolver();
+$resolver->addConnection('default', $conn);
+$resolver->setDefaultConnection('default');
+\Illuminate\Database\Eloquent\Model::setConnectionResolver($resolver);
+
 // Prepare app
 $app = new \Slim\Slim(array(
     'templates.path' => '../templates',
